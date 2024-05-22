@@ -49,16 +49,16 @@ jobs:
         mkdir -p debian/lib/x86_64-linux-gnu/security/
         cp target/release/libpam_rssh.so debian/lib/x86_64-linux-gnu/security/
         mkdir -p debian/DEBIAN
-        echo "Package: my_package" > debian/DEBIAN/control
-        echo "Version: 1.0.0" >> debian/DEBIAN/control
+        echo "Package: libpam-rssh" > debian/DEBIAN/control
+        echo "Version: 1.1.0" >> debian/DEBIAN/control
         echo "Section: base" >> debian/DEBIAN/control
         echo "Priority: optional" >> debian/DEBIAN/control
         echo "Architecture: amd64" >> debian/DEBIAN/control
         echo "Maintainer: Your Name <your.email@example.com>" >> debian/DEBIAN/control
-        echo "Description: My Rust application" >> debian/DEBIAN/control
+        echo "Description: This PAM module provides ssh-agent based authentication." >> debian/DEBIAN/control
         dpkg-deb --build debian
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-package
+        name: libpam-rssh
         path: debian.deb
